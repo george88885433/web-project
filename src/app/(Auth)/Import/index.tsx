@@ -1,5 +1,5 @@
 "use client"
-import { ArrowLeft, Key, FileText, Shield, AlertTriangle } from "lucide-react";
+import { ArrowLeft, Key, FileText, Shield, } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 

@@ -1,5 +1,6 @@
 "use client";
 import { ArrowLeft, Shield } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -178,7 +179,7 @@ const Wallets = () => {
     {
       name: "Rabby",
       category: "Mobile",
-      logo: "https://images.seeklogo.com/logo-png/48/2/rabby-logo-png_seeklogo-483982.png",
+      logo: "https://rabby.io/assets/logos/logo_twitter.png",
       users: "200K+",
     },
     {
@@ -214,13 +215,13 @@ const Wallets = () => {
     {
       name: "Spatium",
       category: "Mobile",
-      logo: "https://img.stackshare.io/service/12412/2Gz9Kxnc_400x400.jpg",
+      logo: "https://cas-img.sgp1.digitaloceanspaces.com/wp-content/uploads/2020/06/09173058/logo-01-01.png",
       users: "50K+",
     },
     {
       name: "Binance Wallet",
       category: "Mobile",
-      logo: "https://images.seeklogo.com/logo-png/59/2/binance-icon-logo-png_seeklogo-598330.png",
+      logo: "https://www.shutterstock.com/image-vector/bnb-binance-icon-sign-payment-600nw-2080319677.jpg",
       users: "20M+",
     },
     {
@@ -262,7 +263,7 @@ const Wallets = () => {
     {
       name: "Coinomi",
       category: "Mobile",
-      logo: "https://images.seeklogo.com/logo-png/48/1/fediverse-logo-png_seeklogo-484654.png",
+      logo: "https://play-lh.googleusercontent.com/yFBkqYSxBhWgBzTFrX1ynohOZ4VtRwu3f_IHHKkjJt8gHz0OQAw5-XkNH3eGaan9snar",
       users: "3M+",
     },
     {
@@ -470,10 +471,12 @@ const Wallets = () => {
                 >
                   <div className="flex items-start gap-4 mb-4">
                     <div className="w-12 h-12 bg-gray-700 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden">
-                      <img
+                      <Image
                         src={wallet.logo}
-                        alt={`${wallet.name} logo`}
-                        className="h-8 w-8 object-contain"
+                        alt={wallet.name}
+                        width={100}
+                        height={100}
+                        className="w-12 h-12 rounded-xl"
                       />
                     </div>
                     <div className="flex-1 min-w-0">

@@ -1,10 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { color, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Shield, ArrowRightLeft, Rocket } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+interface Service {
+  name: string;
+  icon: LucideIcon;
+  color: string;
+  description: string;
+  href: string;
+}
 
-const services = [
+const services: Service[] = [
   {
     name: "Rectify",
     icon: Shield,
@@ -28,8 +36,8 @@ const services = [
   },
 ];
 
-const ServiceCard = ({ name, icon: Icon, color, description, href }: any) => (
-  <Link href={href} passHref>
+const ServiceCard = ({ name, icon: Icon, color, description, href }: Service) => (
+  <Link href={href}>
     <motion.div
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.98 }}
