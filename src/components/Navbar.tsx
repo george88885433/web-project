@@ -11,7 +11,7 @@ const Navbar = () => {
     <header className="fixed top-0 w-full z-50 bg-blue-500 backdrop-blur-md border-b border-white/10">
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         <Link href="/" className="text-2xl font-bold text-white">
-          Wallet<span className="text-web3-cyan">Connect</span>
+          Web3<span className="text-web3-cyan">Connect</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-8">

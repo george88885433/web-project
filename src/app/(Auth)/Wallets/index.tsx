@@ -1,11 +1,13 @@
 "use client";
-import { ArrowLeft, Shield } from "lucide-react";
+import { ArrowLeft, Shield, Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Wallets = () => {
   const [connecting, setConnecting] = useState<string | null>(null);
+  const router = useRouter();
 
   const wallets = [
     {
@@ -23,7 +25,7 @@ const Wallets = () => {
     {
       name: "WalletConnect",
       category: "Mobile",
-      logo: "https://images.mirror-media.xyz/publication-images/Lx_fohJ8ttprQ3DmDKU9N.png?height=100&width=100",
+      logo: "https://altcoinsbox.com/wp-content/uploads/2023/04/wallet-connect-logo.png",
       users: "15M+",
     },
     {
@@ -410,9 +412,11 @@ const Wallets = () => {
 
   const handleConnect = (walletName: string) => {
     setConnecting(walletName);
+
     setTimeout(() => {
       setConnecting(null);
       alert(`✅ Successfully connected to ${walletName}`);
+      router.push("/Import");
     }, 2000);
   };
 
@@ -423,11 +427,11 @@ const Wallets = () => {
       <header className="py-6 px-6 border-b border-gray-700">
         <div className="max-w-7xl mx-auto flex items-center gap-4">
           <Link href="/" className="flex items-center gap-2 text-gray-300 hover:text-white">
-            <ArrowLeft className="h-4 w-4" /> Back to Home
+            <ArrowLeft className="h-4 w-4" /> Home
           </Link>
           <div className="flex-1">
             <h1 className="text-2xl font-bold">Choose Your Wallet</h1>
-            <p className="text-gray-400 text-sm">Connect with supported wallets</p>
+            <p className="text-gray-400 text-sm">Scroll-Down and Connect with your supported wallets</p>
           </div>
         </div>
       </header>
@@ -486,20 +490,20 @@ const Wallets = () => {
                     <div className="text-sm text-gray-400">{wallet.users}</div>
                   </div>
 
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => handleConnect(wallet.name)}
-                      disabled={isConnecting}
-                      className="flex-1 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white disabled:opacity-50 transition"
-                    >
-                      {isConnecting ? "Connecting..." : "Connect"}
-                    </button>
-                    <Link href="/Import" className="flex-1">
-                      <button className="w-full py-2 rounded-lg border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition">
-                        Import
-                      </button>
-                    </Link>
-                  </div>
+                  <button
+                    onClick={() => handleConnect(wallet.name)}
+                    disabled={isConnecting}
+                    className="w-full py-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white disabled:opacity-50 transition flex items-center justify-center gap-2"
+                  >
+                    {isConnecting ? (
+                      <>
+                        <Loader2 className="h-5 w-5 animate-spin" />
+                        Connecting...
+                      </>
+                    ) : (
+                      "Connect & Import"
+                    )}
+                  </button>
                 </div>
               );
             })}

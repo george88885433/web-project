@@ -30,12 +30,12 @@ const page = () => {
         <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
           <span className="block text-white">Connecting</span>
           <span className="block bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">
-            web3
+            Web3
           </span>
         </h1>
 
         <p className="text-lg md:text-2xl text-gray-200 mb-10 leading-relaxed">
-          The communications protocol for web3, WalletConnect brings the ecosystem together by enabling wallets and apps to securely connect and interact.
+          The communications protocol for web3, Web3Connect brings the ecosystem together by enabling wallets and apps to securely connect and interact.
         </p>
 
         <div className="flex flex-col md:flex-row gap-20 justify-center mb-10">

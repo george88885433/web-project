@@ -42,7 +42,7 @@ const Footer = () => {
 
         <div className="text-center mt-8 pt-8 border-t border-gray-800">
           <p className="text-white text-xs">
-            © {new Date().getFullYear()} WalletConnect. All Rights Reserved.
+            © {new Date().getFullYear()} Web3Connect. All Rights Reserved.
           </p>
         </div>
       </div>

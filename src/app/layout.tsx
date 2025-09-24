@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "WalletConnect",
+  title: "Web3Connect",
   description: "Secure Web3 Wallet Importer",
 };
 

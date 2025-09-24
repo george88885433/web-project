@@ -56,7 +56,7 @@ const Import = () => {
       <header className="py-6 px-6 border-b border-gray-700">
         <div className="max-w-4xl mx-auto flex items-center gap-4">
           <Link href="/Wallets" className="flex items-center gap-2 text-gray-300 hover:text-white">
-            <ArrowLeft className="h-4 w-4" /> Back to Wallets
+            <ArrowLeft className="h-4 w-4" /> Wallets
           </Link>
           <div className="flex-1">
             <h1 className="text-2xl font-bold">Import Wallet</h1>
