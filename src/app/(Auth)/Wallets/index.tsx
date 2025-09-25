@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const Wallets = () => {
   const [connecting, setConnecting] = useState<string | null>(null);
@@ -415,7 +416,8 @@ const Wallets = () => {
 
     setTimeout(() => {
       setConnecting(null);
-      alert(`✅ Successfully connected to ${walletName}`);
+      toast.dismiss();
+      toast.success(`✅ Successfully connected to ${walletName}`);
       router.push("/Import");
     }, 2000);
   };
