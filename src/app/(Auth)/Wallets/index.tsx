@@ -416,7 +416,6 @@ const Wallets = () => {
 
     setTimeout(() => {
       setConnecting(null);
-      toast.dismiss();
       toast.success(`✅ Successfully connected to ${walletName}`);
       router.push("/Import");
     }, 2000);

